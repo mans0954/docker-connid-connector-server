@@ -23,5 +23,10 @@ COPY connector-server.properties /etc/connector-server/connector-server.properti
 
 RUN java -cp "/opt/connid-connector-server/lib/framework/*" org.identityconnectors.framework.server.Main -setKey -key fibble -properties /etc/connector-server/connector-server.properties
 
+RUN mkdir -p /opt/connid-connector-server/test-files/
+
+COPY test-file1.csv /opt/connid-connector-server/test-files/test-file1.csv
+COPY test-file2.csv /opt/connid-connector-server/test-files/test-file2.csv
+
 EXPOSE 8759
 CMD [ "java", "-cp", "/opt/connid-connector-server/lib/framework/*", "org.identityconnectors.framework.server.Main", "-run", "-properties", "/etc/connector-server/connector-server.properties" ]
